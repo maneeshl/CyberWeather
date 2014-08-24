@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
+ <%@ include file="/WEB-INF/view/include.jsp"%>
+    
+    
+    
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Welcome</title>
+		
+		<link rel="stylesheet" href="${baseCssLocation}weather.css" type="text/css" media="all" />
+		 <script type="text/javascript" src="${baseJsLocation}jquery-1.10.2.min.js"></script>
+		  <script type="text/javascript" src="${baseJsLocation}jquery.simpleWeather.min.js"></script>
+		
+		<script>
+		 $(document).ready(function() {
+			 
+			 var weatherHandle = $("#weather");
+			 var imageHandle = ${baseLocation};
+			 //var image = ${temperatureForm.cityImage};
+			  var image = ${temperatureForm.cityImage};
+			  var imageSrc = String(image);
+			  imageSrc = imageSrc.substring(1, imageSrc.length - 1);
+			 
+			  $.simpleWeather({
+			    location: 'Austin, TX',
+			    woeid: '',
+			    unit: 'f',
+			    success: function(weather) {
+			    
+			    	weather.temp = 100;
+			    	weather.city = 'ORLANDO';
+			    	
+			      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+			      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+			      html += '<li class="currently">'+weather.currently+'</li>';
+			      html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li><br><br>';
+			      html += '<li> <a href='+imageHandle+'login.action>Return Back</li></ul>';
+			  
+			      $("#weather").html(html);
+			      //$('#weather').css("background-image", "url(http://cdn.superbwallpapers.com/wallpapers/world/jacksonville-at-night-26824-1680x1050.jpg)");
+			    },
+			    error: function(error) {
+			      $("#weather").html('<p>'+error+'</p>');
+			    }
+			  });
+			  
+			// Change weather CSS here  
+			
+			 $('body').css({background : 'url('+ imageHandle +'images/slider/'+imageSrc+'.jpg)  no-repeat bottom right', 'background-size': 'cover'});
+					   
+			  
+			});
+		 
+		 </script>
+				
+	<style>
+	
+	</style>
+	
+				
+				
+	</head> 
+	<body>
+		<h2>${message}</h2>
+		
+		<div id="weather">
+		
+		
+		</div>
+		
+		
+	</body>
+</html>

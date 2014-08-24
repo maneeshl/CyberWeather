@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
+<%@ include file="/WEB-INF/view/include.jsp"%>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Welcome</title>
+
+		<link rel="stylesheet" href="${baseCssLocation}select2.css" />
+		<link rel="stylesheet" href="${baseCssLocation}style-loginForm.css" />
+		
+        <script src="${baseJsLocation}jquery-1.10.2.min.js"></script>
+		<script src="${baseJsLocation}jquery.min.js"></script>
+		<script src="${baseJsLocation}amazingslider.js"></script>
+   		<script src="${baseJsLocation}initslider-1.js"></script>
+		<script src="${baseJsLocation}select2.js"></script>
+		 
+		<script>
+		$(document).ready(function() { 
+	
+			$("#e1_1").select2({
+			allowClear : true,
+			width : '100%'		
+		});
+		
+		}); // END OF DOCUMENT READY
+		</script> 
+		 
+		<style>
+		h1 { color: #F90B6D; font-family: Verdana, Arial; font-size: 34px; font-weight: 300; line-height: 40px; margin: 0 0 11px; }
+		
+		</style> 
+		 
+	</head> 
+	<body>
+		
+		<div id="amazingslider-1" style="display:block;position:relative;margin:16px auto 56px;">
+        <ul class="amazingslider-slides" style="display:none;">
+            <li><img src="${baseImageLocation}pano4.jpg" alt="pano4" /></li>
+            <li><img src="${baseImageLocation}pano5.jpg" alt="pano5" /></li>
+            <li><img src="${baseImageLocation}pano6.jpg" alt="pano6" /></li>
+            <li><img src="${baseImageLocation}pano7.jpg" alt="pano7" /></li>
+        </ul>
+    </div>
+
+		<h1 align="center"> Welcome to Cyber Weather 
+		</h1>
+		
+	<div id="container"> 
+			<form id="loginForm" commandName="loginForm" action="${baseLocation}login.action" method="POST">
+				<div class="login">LOGIN</div>
+				<div class="username-text">Username:</div>
+				<div class="password-text">Password:</div>
+				<div class="username-field">
+					<input type="text" name="userName" value="Pablo" />
+				</div>
+				<div class="password-field">
+					<input type="password" name="password" value="Chacon" />
+				</div>
+				<input type="checkbox" name="remember-me" id="remember-me" /><label for="remember-me">Remember me</label>
+				<div class="forgot-usr-pwd">Forgot <a href="#">username</a> or <a href="#">password</a>?</div>
+				<input type="submit" name="submit" value="GO" />
+			</form>
+
+	</div> 
+		
+	
+		
+	</body>
+</html>

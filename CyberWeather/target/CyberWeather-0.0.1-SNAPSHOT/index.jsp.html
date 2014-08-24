@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
+<%@ include file="/WEB-INF/view/include.jsp"%>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Welcome</title>
+
+		<link rel="stylesheet" href="${baseCssLocation}select2.css" />
+        <script src="${baseJsLocation}jquery-1.10.2.min.js"></script>
+		<script src="${baseJsLocation}jquery.min.js"></script>
+		<script src="${baseJsLocation}amazingslider.js"></script>
+   		<script src="${baseJsLocation}initslider-1.js"></script>
+		<script src="${baseJsLocation}select2.js"></script>
+		 
+		<script>
+		$(document).ready(function() { 
+	
+			$("#e1_1").select2({
+			placeholder : "Select Area",
+			allowClear : true,
+			width : '100%'		
+		});
+		
+		}); // END OF DOCUMENT READY
+		</script> 
+		 
+		<style>
+		h1 { color: #F90B6D; font-family: "Great Vibes", cursive; font-size: 34px; font-weight: 300; line-height: 40px; margin: 0 0 16px; }
+		
+		</style> 
+		 
+	</head> 
+	<body>
+		
+		<div id="amazingslider-1" style="display:block;position:relative;margin:16px auto 56px;">
+        <ul class="amazingslider-slides" style="display:none;">
+            <li><img src="${baseImageLocation}pano4.jpg" alt="pano4" /></li>
+            <li><img src="${baseImageLocation}pano5.jpg" alt="pano5" /></li>
+            <li><img src="${baseImageLocation}pano6.jpg" alt="pano6" /></li>
+            <li><img src="${baseImageLocation}pano7.jpg" alt="pano7" /></li>
+        </ul>
+       
+         
+    </div>
+
+		<h1 align="center"> Welcome to Cyber Weather 
+		</h1>
+		<c:url value="/showMessage.action" var="messageUrl" />
+		<a href="${messageUrl}">Click to enter</a>
+		
+		<form id="manageDistrictsForm" commandName="manageDistrictsForm" action="${baseLocation}manageDistricts.action" method="POST">
+		
+		<div>
+		                <!-- Select City -->       
+		               	<select id="e1_1" name="existingDistrictsDistrict" data-validation-engine="validate[required]" data-prompt-position="bottomLeft:150,75" data-errormessage="District cannot be empty"
+		               	<c:if test="${user.userLevelAccess == 'DISTRICT'}">disabled</c:if>
+		               	>
+		                  	<option value="" selected>Select District:</option>
+		                  	<c:if test="${manageDistrictsForm.existingDistrictsDistrict != ''}">
+		                  	<option value="${manageDistrictsForm.existingDistrictsDistrict}" selected>${manageDistrictsForm.existingDistrictsDistrict}</option>
+		                  	</c:if>
+		             	</select>
+		</div>
+		
+		</form>
+		
+	</body>
+</html>
