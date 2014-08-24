@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
+ <%@ include file="/WEB-INF/view/include.jsp"%>
+    
+    
+    
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Welcome</title>
+		
+		<link rel="stylesheet" href="${baseCssLocation}weather.css" type="text/css" media="all" />
+		 <script type="text/javascript" src="${baseJsLocation}jquery-1.10.2.min.js"></script>
+		  <script type="text/javascript" src="${baseJsLocation}jquery.simpleWeather.min.js"></script>
+		
+		<script>
+		 $(document).ready(function() {
+			  $.simpleWeather({
+			    location: 'Austin, TX',
+			    woeid: '',
+			    unit: 'f',
+			    success: function(weather) {
+			      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+			      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+			      html += '<li class="currently">'+weather.currently+'</li>';
+			      html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+			  
+			      $("#weather").html(html);
+			    },
+			    error: function(error) {
+			      $("#weather").html('<p>'+error+'</p>');
+			    }
+			  });
+			});
+		 
+		 </script>
+				
+	</head> 
+	<body>
+		<h2>${message}</h2>
+		
+		<div id="weather"></div>
+		
+		
+	</body>
+</html>
